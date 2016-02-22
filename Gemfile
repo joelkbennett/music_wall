@@ -12,7 +12,10 @@ gem 'puma'
 gem 'tux'
 
 group :development, :test do
-  gem 'pry'
+  gem 'byebug'
   gem 'shotgun'
   gem 'sqlite3'
+  gem 'sass'
+  gem 'bourbon'
+  gem 'neat'
 end
