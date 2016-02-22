@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222193344) do
+ActiveRecord::Schema.define(version: 20160222200857) do
 
-  create_table "track", force: :cascade do |t|
+  create_table "tracks", force: :cascade do |t|
     t.string   "song_title"
     t.string   "author"
     t.string   "url"

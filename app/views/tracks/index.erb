@@ -1,0 +1,11 @@
+<h1>All Tracks</h1>
+
+<ul>
+<% @tracks.each do |track| %>
+
+  <li>
+    <%= track.song_title %> | <%= track.author %>
+  </li>
+
+<% end %>
+</ul>
