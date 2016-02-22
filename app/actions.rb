@@ -36,6 +36,7 @@ delete '/tracks/:id' do |id|
 end
 
 # User Routes
+# TODO: Replace direct session bits with instance vars
 post '/' do
   byebug
   @user = User.find_by(email: params[:email])
