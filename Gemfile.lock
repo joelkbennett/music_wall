@@ -17,6 +17,10 @@ GEM
     arel (6.0.3)
     backports (3.6.7)
     bcrypt (3.1.10)
+    bitters (1.2.0)
+      bourbon (>= 4.2)
+      sass (>= 3.4)
+      thor
     bond (0.5.1)
     bourbon (4.2.6)
       sass (~> 3.4)
@@ -80,6 +84,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   bcrypt
+  bitters
   bourbon
   byebug
   neat

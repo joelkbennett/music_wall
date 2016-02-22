@@ -1,4 +1,13 @@
-$(document).ready(function() {
+function($) {  
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
-});
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+})(jQuery);

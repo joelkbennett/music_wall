@@ -28,5 +28,9 @@ get '/tracks/:id' do |id|
   @track = Track.find(id)
   erb :'tracks/show'
 end
- 
 
+delete '/tracks/:id' do |id|
+  track = Tracks.find(id)
+  track.destroy
+  redirect '/tracks'
+end

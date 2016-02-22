@@ -11,7 +11,7 @@ gem 'sinatra-activerecord'
 gem 'puma'
 gem 'tux'
 
-gem 'bcrypt'
+gem 'bcrypt-ruby'
 
 group :development, :test do
   gem 'byebug'
@@ -20,4 +20,5 @@ group :development, :test do
   gem 'sass'
   gem 'bourbon'
   gem 'neat'
+  gem 'bitters'
 end

@@ -1,0 +1,11 @@
+.header-site {
+  margin-bottom: 1em;
+}
+
+.section-page {
+  @include outer-container;
+}
+
+.footer-site {
+  @include outer-container;
+}

@@ -1,11 +1,24 @@
 <h1>All Tracks</h1>
 
-<ul>
+<div class="cards">
+
 <% @tracks.each do |track| %>
-
-  <li>
-    <%= track.song_title %> | <%= track.author %>
-  </li>
-
+  <a href="/tracks/<%= track.id %>">
+  <article class="card">
+    <div class="card-image">
+      <img src="https://placehold.it/400x300" alt="track cover">
+    </div>
+    </a>
+    <div class="card-header">
+      <%= track.song_title %>
+    </div>
+    <div class="card-copy">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
+    </div>
+  </article> 
+  </a>
 <% end %>
-</ul>
+
+</div><!-- end cards -->
+
+<a href="/tracks/new" class="button">New Track</a>
