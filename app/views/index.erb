@@ -1,4 +1,21 @@
-<h1>Home Page</h1>
-<form method='post' action='/'>
-  
-</form>
+<% if session[:name].nil? %>
+  <form method='post' action='/'>
+    <div>
+      <label for='email'>Email: </label>
+      <input type='text' name='email' id='email'>
+    </div>
+    <div>
+      <label for='password'>Password: </label>
+      <input type="password" name='password' id='password'>
+    </div>
+    <input type="submit" value="login">
+  </form>
+<% else %>
+
+<article>
+  <header class="article-header">
+    <h1>Hey <%= session[:name] %>, <a href='/tracks/new'>get started</a> now!
+  </header>
+</article>
+
+<% end %>

@@ -19,6 +19,12 @@ h1, h2, h3, p {
   margin: 0;
 }
 
+.article-header {
+  h1, h2 {
+    text-align: center; 
+  }
+}
+
 hr {
   border-bottom: 1px solid $light-gray;
   border-left: none;
@@ -30,6 +36,10 @@ hr {
 p {
   color: $base-font-color;
   line-height: $base-line-height;
+}
+
+article-body p {
+  @include columns(2);
 }
 
 a {

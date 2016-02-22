@@ -565,6 +565,9 @@ body {
 h1, h2, h3, p {
   margin: 0; }
 
+.article-header h1, .article-header h2 {
+  text-align: center; }
+
 hr {
   border-bottom: 1px solid #ddd;
   border-left: none;
@@ -575,6 +578,11 @@ hr {
 p {
   color: #333;
   line-height: 1.5; }
+
+article-body p {
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  columns: 2; }
 
 a {
   color: #1565c0;
@@ -970,5 +978,87 @@ header.navigation {
     background-color: #f7f7f7; }
     .card:active .card-header {
       background-color: #f7f7f7; }
+
+.breadcrumb {
+  display: inline-block;
+  margin-bottom: 1.5em;
+  text-align: left; }
+  .breadcrumb a {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-left: 0;
+    color: #999;
+    display: inline-block;
+    font-size: 0.8em;
+    line-height: 2.25em;
+    margin-bottom: 2px;
+    margin-right: -5px;
+    padding: 0 0.5625em 0 1.125em;
+    position: relative;
+    text-decoration: none; }
+    .breadcrumb a:first-child {
+      border-bottom-left-radius: 3px;
+      border-left: 1px solid #ddd;
+      border-top-left-radius: 3px;
+      padding-left: 1.125em; }
+    .breadcrumb a:last-child {
+      background-color: #fff;
+      border-bottom-right-radius: 3px;
+      border-top-right-radius: 3px;
+      color: #999;
+      padding-right: 1.125em; }
+    .breadcrumb a:focus, .breadcrumb a:hover {
+      background-color: #fff;
+      color: #1565c0; }
+    .breadcrumb a:after, .breadcrumb a:before {
+      position: absolute;
+      top: 0px;
+      right: auto;
+      bottom: 0px;
+      left: 100%;
+      border-bottom: 1.125em solid transparent;
+      border-left: 0.5625em solid transparent;
+      border-top: 1.125em solid transparent;
+      content: '';
+      display: block;
+      margin: auto;
+      z-index: 2; }
+    .breadcrumb a:last-child:after, .breadcrumb a:last-child:before {
+      border: none; }
+    .breadcrumb a:before {
+      border-left-color: #ddd;
+      margin-left: 1px;
+      z-index: 1; }
+    .breadcrumb a:after {
+      border-left-color: #fff; }
+    @media screen and (min-width: 40em) {
+      .breadcrumb a {
+        font-size: 1em;
+        padding: 0 1.125em 0 1.5em; } }
+
+.parallax-window {
+  max-height: 30em;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 1em; }
+
+.parallax-static-content {
+  color: #9A9A8A;
+  padding: 8em 0;
+  position: relative;
+  z-index: 9; }
+
+.parallax-background {
+  background: url("http://placehold.it/1000x1000") repeat;
+  background-position: top;
+  background-size: cover;
+  background-color: beige;
+  height: 60em;
+  left: 0;
+  position: absolute;
+  top: -10em;
+  width: 100%; }
 
 /*# sourceMappingURL=application.css.map */
