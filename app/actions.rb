@@ -34,3 +34,30 @@ delete '/tracks/:id' do |id|
   track.destroy
   redirect '/tracks'
 end
+
+# User Routes
+post '/' do
+  @user = User.find_by(username: params[:username])
+  if @user.password == BCrypt::Engine.hash_secret(params[:password], @user.salt)
+    session[:name] = params[:first_name]
+    redirect '/'
+  end
+  erd 'error'
+end
+
+get '/signup' do
+  erb :'users/new'
+end
+
+post '/signup' do
+  pw_salt = BCrypt::Engine.generate_salt
+  pw_hash = BCrypt::Engine.hash_secret(params[:password], pw_salt)
+  @user = User.create(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: pw_hash, salt: pw_salt)
+  session[:name] = params[:first_name]
+  redirect '/'
+end
+
+get '/logout' do
+  session[:name] = nil
+  redirct '/'
+end
