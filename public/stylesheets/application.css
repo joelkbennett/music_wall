@@ -580,8 +580,7 @@ th {
   padding: 2em; }
 
 .border-bottom {
-  border-bottom: thin solid #ddd;
-  padding-bottom: 1em; }
+  border-bottom: thin solid #ddd; }
 
 body {
   font-family: "PT Sans", sans-serif;

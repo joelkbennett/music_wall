@@ -27,10 +27,12 @@ end
 
 get '/tracks/:id' do |id|
   @track = Track.find(id)
-  @user = User.find(session[:uid])
-  @upvotes = Vote.where(song_id: id).where(liked: true).count
-  @downvotes = Vote.where(song_id: id).where(liked: false).count
-  @user_vote = Vote.where(user_id: @user.id).where(song_id: id).take
+  if session[:uid]
+    @user = User.find(session[:uid])
+    @upvotes = Vote.where(track_id: id).where(liked: true).count
+    @downvotes = Vote.where(track_id: id).where(liked: false).count
+    @user_vote = Vote.where(user_id: @user.id).where(track_id: id).take
+  end
   erb :'tracks/show'
 end
 
@@ -74,13 +76,13 @@ end
 
 # Vote actions
 
-post '/tracks/:tid/:uid/up' do |tid, uid|
-  vote = Vote.where(user_id: uid).where(song_id: tid).load
-  # byebug
-  if vote[0]
+post '/tracks/:tid/up' do |tid|
+  vote = Vote.where(user_id: session[:uid]).where(track_id: tid).take
+
+  if vote
     vote.liked = true;
   else
-    vote = Vote.new(user_id: uid, song_id: tid, liked: true)
+    vote = Vote.new(user_id: session[:uid], track_id: tid, liked: true)
   end
 
   if vote.save
@@ -90,13 +92,12 @@ post '/tracks/:tid/:uid/up' do |tid, uid|
   end
 end
 
-post '/tracks/:tid/:uid/down' do |tid, uid|
-  vote = Vote.where(user_id: uid).where(song_id: tid).load
-  # byebug
-  if vote[0]
+post '/tracks/:tid/down' do |tid|
+  vote = Vote.where(user_id: session[:uid]).where(track_id: tid).take
+  if vote
     vote.liked = false;
   else
-    vote = Vote.new(user_id: uid, song_id: tid, liked: false) 
+    vote = Vote.new(user_id: session[:uid], track_id: tid, liked: false)
   end
 
   if vote.save

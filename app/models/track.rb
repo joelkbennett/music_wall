@@ -16,4 +16,12 @@ class Track < ActiveRecord::Base
     created_at.strftime('%B %d, %Y')
   end
 
+  def count_up_votes
+    votes.where(liked: true).count
+  end
+
+  def count_down_votes
+    votes.where(liked: false).count
+  end
+
 end

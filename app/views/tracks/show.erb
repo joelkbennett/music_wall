@@ -31,11 +31,11 @@
   <footer class="article-footer">
     <div class="vote">
       <% if session[:name] %>
-        <form class="vote-up" method='POST' action='/tracks/<%= @track.id %>/<%= @user.id %>/up'>
+        <form class="vote-up" method='POST' action='/tracks/<%= @track.id %>/up'>
           <input type="submit" value="Upvote" class="<% if @user_vote && @user_vote.liked %>active<% end %>">
         </form>
 
-        <form class="vote-down" method='POST' action='/tracks/<%= @track.id %>/<%= @user.id %>/down'>
+        <form class="vote-down" method='POST' action='/tracks/<%= @track.id %>/down'>
           <input type="submit" value="Downvote" class="<% if @user_vote && !@user_vote.liked %>active<% end %>">
         </form>    
       <% end %>  
@@ -44,12 +44,16 @@
     <% if session[:uid] == @track.user_id %>
       <form method='POST' action='/tracks/<%= @track.id %>' class='border-bottom'>
         <input type='hidden' name='_method' method="DELETE">
-        <input type="submit" value="Delete">
+        <p>Do you want to remove this track? &nbsp;&nbsp;<input type="submit" value="Remove"></p>
       </form>
     <% end %>
 
     <section class="comments">
-      <h2>What People are saying about <strong><%= @track.song_title %></strong></h2>
+      <% if @track.comments[0] %>
+        <h2>What People are saying about <strong><%= @track.song_title %></strong></h2>
+      <% else %>
+        <h2>Nobody has reviewed this track yet!</h2>
+      <% end %>
 
       <% @track.comments.each do |comment| %>
       <div class="comment">
@@ -78,6 +82,8 @@
             </form>
           </div>
         </div>  
+      <% else %>
+        <h2><a href="/signup">Join now</a> to review this track!</h2>
       <% end %>
 
     </section>
