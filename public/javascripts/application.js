@@ -1,4 +1,4 @@
-function($) { 
+(function($) { 
 
   // Menu Toggle
 
@@ -43,6 +43,27 @@ function($) {
 
       plxBackground.css('top', - (plxWindowTopToWindowTop * plxSpeed) + 'px');
     }
+  }
+
+  // Star Reviews
+  
+  var starRating = $('.star-rating');
+  var numRating = $('#rating');
+  
+  starRating.find('.star').on('click', function() {
+    var self = $(this);
+    setStars(self.attr('data-rating'));
+    numRating.val(self.attr('data-rating'));
+  });
+
+  function setStars(num) {
+    $('.star').each(function() {
+      $(this).html('&deg;');
+      var count = 1;
+      for (count; count <= num; count++) {
+        $('li[data-rating="' + count + '"]').html('*')
+      }
+    });
   }
 
 })(jQuery);

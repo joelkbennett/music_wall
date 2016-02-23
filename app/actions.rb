@@ -3,7 +3,8 @@ get '/' do
 end
 
 get '/tracks' do
-  @tracks = Track.all
+  tracks = Track.all
+  @tracks = tracks.sort_by { |track| track.total_votes }.reverse
   erb :'tracks/index'
 end
 
@@ -119,7 +120,7 @@ end
 # Comments
 
 post '/tracks/:id/comment' do |id|
-  new_comment = Comment.new(user_id: session[:uid], track_id: id, comment: params[:comment])
+  new_comment = Comment.new(user_id: session[:uid], track_id: id, comment: params[:comment], rating: params[:rating])
   if new_comment.save
     redirect "/tracks/#{id}"
   else

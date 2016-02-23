@@ -28,4 +28,7 @@ class Track < ActiveRecord::Base
     comments.where(user_id: user_id).count > 0
   end
 
+  def total_votes
+    votes.where(liked: true).count
+  end
 end

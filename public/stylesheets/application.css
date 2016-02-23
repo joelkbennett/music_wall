@@ -738,10 +738,16 @@ p.author {
   .single-form:last-child {
     margin-right: 0; }
 
+.hidden-field {
+  display: none; }
+
 .vote input {
   width: 90%; }
 .vote .active {
   background-color: green; }
+
+.list-inline li {
+  display: inline-block; }
 
 header.navigation {
   background-color: #333;
@@ -1346,5 +1352,11 @@ header.navigation {
       color: rgba(51, 51, 51, 0.5);
       font-size: 0.9em;
       font-style: italic; }
+
+.star-rating {
+  margin-bottom: 1em; }
+  .star-rating .star {
+    font-size: 2em;
+    cursor: pointer; }
 
 /*# sourceMappingURL=application.css.map */

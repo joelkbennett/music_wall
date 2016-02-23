@@ -62,11 +62,12 @@
         </div>
         <div class="comment-content">
           <h1>
-            <strong><%= comment.user.first_name + " " + comment.user.last_name %></strong> wrote
+            <strong><%= comment.user.first_name + " " + comment.user.last_name %></strong> 
+            wrote:
           </h1>
           <p><%= comment.comment %></p>
           <p class="comment-detail">
-            <%= comment.added_on %> 
+            <strong>Rated <%= comment.rating %> out of 5</strong> // <%= comment.added_on %> 
             <% if comment.user.id == session[:uid] %> 
               <hr>
               <form method="POST" action="/tracks/<%= @track.id %>/comment/<%= comment.id %>">
@@ -88,6 +89,17 @@
               <div>
                 <!-- <label for='comment'>Comment</label> -->
                 <textarea name='comment' id='comment'></textarea>
+                <label for='rating'>Rating</label>
+                <input type="number" name='rating' id="rating" class="hidden-field">
+                <div class="star-rating">
+                  <ul class='list-inline'>
+                    <li class="star star-1" data-rating='1'>&deg;</li>
+                    <li class="star star-2" data-rating='2'>&deg;</li>
+                    <li class="star star-3" data-rating='3'>&deg;</li>
+                    <li class="star star-4" data-rating='4'>&deg;</li>
+                    <li class="star star-5" data-rating='5'>&deg;</li>
+                  </ul>
+                </div>
               </div>
               <input type="submit" value="submit">
             </form>
