@@ -24,4 +24,8 @@ class Track < ActiveRecord::Base
     votes.where(liked: false).count
   end
 
+  def reviewed?(user_id)
+    comments.where(user_id: user_id).count > 0
+  end
+
 end

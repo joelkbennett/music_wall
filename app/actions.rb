@@ -36,7 +36,7 @@ get '/tracks/:id' do |id|
   erb :'tracks/show'
 end
 
-delete '/tracks/:id' do |id|
+post '/tracks/:id' do |id|
   track = Track.find(id)
   track.destroy
   redirect '/tracks'
@@ -72,6 +72,11 @@ end
 get '/logout' do
   session.clear
   redirect '/'
+end
+
+get '/users/:id' do |id|
+  @user = User.find(id)
+  erb :'users/show'
 end
 
 # Vote actions
@@ -119,6 +124,15 @@ post '/tracks/:id/comment' do |id|
     redirect "/tracks/#{id}"
   else
     "BLERG"
+  end
+end
+
+post '/tracks/:id/comment/:cid' do |tid, cid|
+  review = Comment.find(cid)
+  if session[:uid] && session[:uid] == review.user_id
+    review = Comment.find(cid)
+    review.destroy
+    redirect "/tracks/#{tid}"
   end
 end
 

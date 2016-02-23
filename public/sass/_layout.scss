@@ -18,7 +18,7 @@
 .vote {
   @include outer-container;
   padding: 1em 0;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
   border-bottom: thin solid #ddd;
 
   .vote-up, .vote-down {
