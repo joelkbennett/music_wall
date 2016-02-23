@@ -1,26 +1,35 @@
-<article>
-  <header class="article-header">
-    <h1>All Tracks</h1>
-  </header>
+<section class='section-page'>
+  <article>
+    <header class="article-header">
+      <h1>All Tracks</h1>
+    </header>
 
-  <div class="cards">
+    <div class="cards">
 
-  <% @tracks.each do |track| %>
-    <a href="/tracks/<%= track.id %>">
-    <article class="card">
-      <div class="card-image">
-        <img src="https://placehold.it/400x300" alt="track cover">
-      </div>
-      </a>
-      <div class="card-header">
-        <%= track.song_title %>
-      </div>
-      <div class="card-copy">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
-      </div>
-    </article> 
-    </a>
-  <% end %>
+    <% @tracks.each do |track| %>
+      <a href="/tracks/<%= track.id %>">
+      <article class="card">
+        <div class="card-image">
+          <img src="https://placehold.it/400x300" alt="track cover">
+        </div>
+        </a>
 
-  </div><!-- end cards -->
-</article>
+        <div class="card-header">
+          <%= track.song_title %>
+        </div>
+
+        <div class="card-copy">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
+          <a href='/tracks/<%= track.id %>'>&raquo; Listen now</a>
+        </div>
+
+        <div class="card-footer">
+          <hr>
+          <p>Added by <strong><%= track.user %></strong><br><em><%= track.added_on %></em></p>
+        </div>
+      </article> 
+    <% end %>
+
+    </div>
+  </article>
+</section>

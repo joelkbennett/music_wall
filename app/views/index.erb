@@ -1,24 +1,35 @@
-<% if session[:name].nil? %>
-  <form method='post' action='/'>
-    <div>
-      <label for='email'>Email: </label>
-      <input type='text' name='email' id='email'>
-    </div>
-    <div>
-      <label for='password'>Password: </label>
-      <input type="password" name='password' id='password'>
-    </div>
-    <input type="submit" value="login">
-  </form>
-<% else %>
+<section>
+  <div class="hero">
+    <div class="hero-inner">
+      <a href="" class="hero-logo"><img src="/images/logo-big.png" alt="Logo Image"></a>
+      <div class="hero-copy">
 
-<div class="hero">
-  <div class="hero-inner">
-    <a href="" class="hero-logo"><img src="/images/logo-big.png" alt="Logo Image"></a>
-    <div class="hero-copy">
-      <h1>Welcome to Music Wall, <%= session[:name] %>.<br><a href='/tracks/new'>Get started</a> now!
+        <% if session[:name].nil? %>
+          <div class="single-form-container">
+            <div class="single-form">
+              <h1>Join Music Wall</h1>
+              <h2>Post tracks, for some reason.<br><a href="/signup">Signup today</a></h2>
+              <form method='post' action='/' class='add-padding-large'>
+                <h3>Current user login</h3>
+                <div>
+                  <label for='email'>Email</label>
+                  <input type='text' name='email' id='email'>
+                </div>
+                <div>
+                  <label for='password'>Password</label>
+                  <input type="password" name='password' id='password'>
+                </div>
+                <input type="submit" value="login">
+              </form>
+              <small><a href="#">Terms and Conditions</a></small>
+            </div>
+          </div>  
+        <% else %>
+          <h1>Welcome to Music Wall, <%= session[:name] %>.<br><a href='/tracks/new'>Get started</a> now!</h1>
+        <% end %>
+
+      </div>
     </div>
   </div>
-</div>
-  
-<% end %>
+    
+</section>

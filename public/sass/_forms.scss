@@ -3,3 +3,12 @@
     margin: 2em;
   }
 }
+
+.single-form-container {
+  @include outer-container;
+}
+
+.single-form {
+  @include span-columns(6);
+  @include shift(3);
+}

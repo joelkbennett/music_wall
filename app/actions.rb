@@ -15,7 +15,8 @@ post '/tracks' do
   new_track = Track.new(
     song_title: params[:song_title],
     author: params[:author],
-    url: params[:url]
+    url: params[:url],
+    user_id: session[:uid]
   )
   if new_track.save 
     redirect '/tracks'
@@ -67,8 +68,7 @@ post '/signup' do
 end
 
 get '/logout' do
-  session[:name] = nil
-  session[:id] = nil
+  session.clear
   redirect '/'
 end
 
@@ -109,6 +109,19 @@ end
 get '/search' do
 
 end
+
+# Comments
+
+post '/tracks/:id/comment' do |id|
+  new_comment = Comment.new(user_id: session[:uid], track_id: id, comment: params[:comment])
+  if new_comment.save
+    redirect "/tracks/#{id}"
+  else
+    "BLERG"
+  end
+end
+
+# Search
 
 post '/search' do
   @results = Track.where(title: params[:search_term]).load

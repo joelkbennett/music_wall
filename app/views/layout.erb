@@ -25,7 +25,9 @@
         <% end %>
         <li class="nav-link">|</li>
         <li class="nav-link"><a href="/tracks">Tracks</a></li>
-        <li class="nav-link"><a href="/tracks/new" class="button">New Track</a></li>
+        <% if session[:name] %>
+          <li class="nav-link"><a href="/tracks/new" class="button">New Track</a></li>
+        <% end %>
       </ul>
     </nav>
     <div class="navigation-tools">
@@ -41,9 +43,7 @@
   </div>
 </header>
   
-<section class='section-page'>
-  <%= yield %>
-</section>
+<%= yield %>
 
 <footer class="footer" role="contentinfo">
   <div class="footer-logo">

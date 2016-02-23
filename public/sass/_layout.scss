@@ -1,9 +1,10 @@
 .header-site {
-  margin-bottom: 1em;
+  // margin-bottom: 1em;
 }
 
 .section-page {
   @include outer-container;
+  margin: 1em auto 2em auto;
 }
 
 .footer-site {
@@ -29,4 +30,11 @@
   }
 }
 
-  
+.add-padding-large {
+  padding: 2em;
+}
+
+.border-bottom {
+  border-bottom: thin solid #ddd;
+  padding-bottom: 1em;
+}
