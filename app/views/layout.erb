@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="/stylesheets/application.css">
 </head>
 <body>
-  <!-- <header class='header-site'> -->
 
 <header class="navigation header-site" role="banner">
   <div class="navigation-wrapper">
@@ -24,12 +23,14 @@
           <li class="nav-link"><a href="/">Login</a></li>
           <li class="nav-link"><a href="/signup">Signup</a></li>
         <% end %>
+        <li class="nav-link">|</li>
         <li class="nav-link"><a href="/tracks">Tracks</a></li>
+        <li class="nav-link"><a href="/tracks/new" class="button">New Track</a></li>
       </ul>
     </nav>
     <div class="navigation-tools">
       <div class="search-bar">
-        <form role="search">
+        <form role="search" method='post' action='/search'>
           <input type="search" placeholder="Enter Search" />
           <button type="submit">
             <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="Search Icon">
@@ -39,15 +40,38 @@
     </div>
   </div>
 </header>
-  <!-- </header> -->
   
-  <section class='section-page'>
-    <%= yield %>
-  </section>
+<section class='section-page'>
+  <%= yield %>
+</section>
 
-  <footer class="footer-site">
-    
-  </footer>
+<footer class="footer" role="contentinfo">
+  <div class="footer-logo">
+    <img src="/images/logo-big.png" alt="Music Wall Logo">
+  </div>
+  <div class="footer-links">
+    <ul>
+      <li><h3>Content</h3></li>
+      <li><a href="javascript:void(0)">Tracks</a></li>
+      <li><a href="javascript:void(0)">Add a Track</a></li>
+    </ul>
+    <ul>
+      <li><h3>Check Us Out</h3></li>
+      <li><a href="javascript:void(0)">About Us</a></li>
+      <li><a href="javascript:void(0)">Twitter</a></li>
+    </ul>
+    <ul>
+      <li><h3>Legal</h3></li>
+      <li><a href="javascript:void(0)">Terms and Conditions</a></li>
+      <li><a href="javascript:void(0)">Privacy Policy</a></li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, nostrum repudiandae saepe.</p>
+</footer>
+
 </body>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

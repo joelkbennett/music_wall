@@ -12,10 +12,13 @@
   </form>
 <% else %>
 
-<article>
-  <header class="article-header">
-    <h1>Hey <%= session[:name] %>, <a href='/tracks/new'>get started</a> now!
-  </header>
-</article>
-
+<div class="hero">
+  <div class="hero-inner">
+    <a href="" class="hero-logo"><img src="/images/logo-big.png" alt="Logo Image"></a>
+    <div class="hero-copy">
+      <h1>Welcome to Music Wall, <%= session[:name] %>.<br><a href='/tracks/new'>Get started</a> now!
+    </div>
+  </div>
+</div>
+  
 <% end %>

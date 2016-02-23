@@ -20,9 +20,8 @@ h1, h2, h3, p {
 }
 
 .article-header {
-  h1, h2 {
-    text-align: center; 
-  }
+  text-align: center; 
+  margin-bottom: 1em;
 }
 
 hr {
@@ -38,8 +37,13 @@ p {
   line-height: $base-line-height;
 }
 
-article-body p {
-  @include columns(2);
+.article-body {
+  .copy {
+    margin: 0 4em;
+    @include column-count(2);
+    @include column-gap(2em);
+    text-align: justify;
+  }
 }
 
 a {

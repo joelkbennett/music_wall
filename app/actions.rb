@@ -26,11 +26,15 @@ end
 
 get '/tracks/:id' do |id|
   @track = Track.find(id)
+  @user = User.find(session[:uid])
+  @upvotes = Vote.where(song_id: id).where(liked: true).count
+  @downvotes = Vote.where(song_id: id).where(liked: false).count
+  @user_vote = Vote.where(user_id: @user.id).where(song_id: id).take
   erb :'tracks/show'
 end
 
 delete '/tracks/:id' do |id|
-  track = Tracks.find(id)
+  track = Track.find(id)
   track.destroy
   redirect '/tracks'
 end
@@ -38,11 +42,11 @@ end
 # User Routes
 # TODO: Replace direct session bits with instance vars
 post '/' do
-  byebug
   @user = User.find_by(email: params[:email])
-  if @user.password == BCrypt::Engine.hash_secret(params[:password], @user.salt)
-    session[:name] = params[:first_name]
-    redirect '/'
+  if @user.authenticate(params[:password])
+    session[:name] = @user.first_name
+    session[:uid] = @user.id
+    redirect '/tracks'
   else
     erb 'error logging in'
   end
@@ -53,14 +57,60 @@ get '/signup' do
 end
 
 post '/signup' do
-  pw_salt = BCrypt::Engine.generate_salt
-  pw_hash = BCrypt::Engine.hash_secret(params[:password], pw_salt)
-  @user = User.create(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: pw_hash, salt: pw_salt)
+  @user = User.new(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: '', password_confirmation: 'nomatch')
+  @user.password = params[:password]
+  @user.password_confirmation = params[:pass_conf]
+  @user.save
   session[:name] = @user.first_name
+  session[:uid] = @user.id
   redirect '/'
 end
 
 get '/logout' do
   session[:name] = nil
+  session[:id] = nil
   redirect '/'
+end
+
+# Vote actions
+
+post '/tracks/:tid/:uid/up' do |tid, uid|
+  vote = Vote.where(user_id: uid).where(song_id: tid).load
+  # byebug
+  if vote[0]
+    vote.liked = true;
+  else
+    vote = Vote.new(user_id: uid, song_id: tid, liked: true)
+  end
+
+  if vote.save
+    redirect "/tracks/#{tid}"
+  else
+    "FUCK"
+  end
+end
+
+post '/tracks/:tid/:uid/down' do |tid, uid|
+  vote = Vote.where(user_id: uid).where(song_id: tid).load
+  # byebug
+  if vote[0]
+    vote.liked = false;
+  else
+    vote = Vote.new(user_id: uid, song_id: tid, liked: false) 
+  end
+
+  if vote.save
+    redirect "/tracks/#{tid}"
+  else
+    "OHHH SHIT"
+  end
+end
+
+get '/search' do
+
+end
+
+post '/search' do
+  @results = Track.where(title: params[:search_term]).load
+  erb = :'tracks/search_results'
 end

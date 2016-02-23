@@ -9,3 +9,24 @@
 .footer-site {
   @include outer-container;
 }
+
+.article-footer {
+  text-align: center;
+}
+
+.vote {
+  @include outer-container;
+  padding: 1em 0;
+  margin-bottom: 1em;
+  border-bottom: thin solid #ddd;
+
+  .vote-up, .vote-down {
+    @include span-columns(3);
+  }
+
+  .vote-up {
+    @include shift(3);
+  }
+}
+
+  

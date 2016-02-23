@@ -12,14 +12,34 @@
 
 <header class="article-header">
   <h1><%= @track.song_title %></h1>
-  <h2><%= @track.author %></h2>  
+  <h2><em>by <%= @track.author %></em></h2>
+  <strong><%= @upvotes %> up</strong>  <em>&</em> <strong><%= @downvotes %> down</strong>
 </header>
 
 <section class="article-body">
+<div class="copy">
 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </p>
 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </p>
+</div>
 </section>
 
 <footer class="article-footer">
-  
+  <div class="vote">
+    <% if session[:name] %>
+      <form class="vote-up" method='POST' action='/tracks/<%= @track.id %>/<%= @user.id %>/up'>
+        <input type="submit" value="Upvote" class="<% if @user_vote && @user_vote.liked %>active<% end %>">
+      </form>
+
+      <form class="vote-down" method='POST' action='/tracks/<%= @track.id %>/<%= @user.id %>/down'>
+        <input type="submit" value="Downvote" class="<% if @user_vote && !@user_vote.liked %>active<% end %>">
+      </form>    
+    <% end %>  
+  </div>
+
+  <% if session[:name] %>
+    <form method='POST' action='/tracks/<%= @track.id %>'>
+      <input type='hidden' name='_method' method="DELETE">
+      <input type="submit" value="Delete">
+    </form>
+  <% end %>
 </footer>
