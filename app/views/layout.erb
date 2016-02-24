@@ -32,8 +32,8 @@
     </nav>
     <div class="navigation-tools">
       <div class="search-bar">
-        <form role="search" method='post' action='/search'>
-          <input type="search" placeholder="Enter Search" />
+        <form role="search" method='get' action='/tracks'>
+          <input type="search" name="search_term" id="search_term" placeholder="Search by Song" />
           <button type="submit">
             <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="Search Icon">
           </button>

@@ -13,42 +13,52 @@
   
     <h2>Your Tracks</h2>
 
-    <table class="tables">
-      <thead>
-        <tr>
-          <th>Track Title</th>
-          <th>Added On</th>
-          <th>Votes</th>
-          <th>Reviews</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @user.tracks.each do |track| %>
+    <% if @user.tracks[0] %>
+
+      <table class="tables">
+        <thead>
           <tr>
-            <td><a href="/tracks/<%= track.id %>"><%= track.song_title %></a></td>
-            <td><%= track.added_on %></td>
-            <td><%= "#{track.count_up_votes} up & #{track.count_up_votes} down" %></td>
-            <td><%= track.comments.count %></td>
+            <th>Track Title</th>
+            <th>Added On</th>
+            <th>Votes</th>
+            <th>Reviews</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @user.tracks.each do |track| %>
+            <tr>
+              <td><a href="/tracks/<%= track.id %>"><%= track.song_title %></a></td>
+              <td><%= track.added_on %></td>
+              <td><%= "#{track.count_up_votes} up & #{track.count_up_votes} down" %></td>
+              <td><%= track.comments.count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>You haven't added any tracks yet - <a href="/tracks/new">Add some!</a>
+    <% end %>
 
     <hr>
 
     <h2>Your Reviews</h2>
 
-    <% @user.comments.order(created_at: :desc).each do |comment| %>
-      <div class="comment">
-        <div class="comment-image">
-          <img src="<%= comment.user.gravitar %>" alt="Logo image">
+    <% if @user.comments[0] %>
+
+      <% @user.comments.order(created_at: :desc).each do |comment| %>
+        <div class="comment">
+          <div class="comment-image">
+            <img src="<%= comment.user.gravitar %>" alt="Logo image">
+          </div>
+          <div class="comment-content">
+            <h1><strong>You reviewed <%= comment.track_name %></strong></h1>
+            <p><%= comment.comment %></p>
+            <p class="comment-detail"><%= comment.added_on %></p>
+          </div>
         </div>
-        <div class="comment-content">
-          <h1><strong>You reviewed <%= comment.track_name %></strong></h1>
-          <p><%= comment.comment %></p>
-          <p class="comment-detail"><%= comment.added_on %></p>
-        </div>
-      </div>
+      <% end %>
+    <% else %>
+      <p>You haven't reviewed any tracks yet - <a href="/tracks">get started!</a>
     <% end %>
 
   </section>

@@ -1,9 +1,14 @@
 get '/' do
+  @track_count = Track.all.count
   erb :index
 end
 
 get '/tracks' do
   tracks = Track.all
+  if params[:search_term]
+    tracks = tracks.where("song_title LIKE :query", query: "%#{params[:search_term]}")
+  end
+
   @tracks = tracks.sort_by { |track| track.total_votes }.reverse
   erb :'tracks/index'
 end
@@ -138,8 +143,8 @@ post '/tracks/:id/comment/:cid' do |tid, cid|
 end
 
 # Search
-
-post '/search' do
-  @results = Track.where(title: params[:search_term]).load
-  erb = :'tracks/search_results'
-end
+# 
+# post '/search' do
+#   @results = Track.where(title: params[:search_term]).load
+#   erb = :'tracks/search_results'
+# end

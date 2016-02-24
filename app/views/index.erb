@@ -26,6 +26,7 @@
           </div>  
         <% else %>
           <h1>Welcome to Music Wall, <%= session[:name] %>.<br><a href='/tracks/new'>Get started</a> now!</h1>
+          <h2><%= @track_count %> Tracks. Hundreds more added daily.</h2> 
         <% end %>
 
       </div>

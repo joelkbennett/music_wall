@@ -42,10 +42,18 @@
     </div>
 
     <% if session[:uid] == @track.user_id %>
-      <form method="POST" action="/tracks/<%= @track.id %>" class="border-bottom">
-        <!-- <input type="hidden" name="_method" method="DELETE"> -->
-        <p>Do you want to remove this track? &nbsp;&nbsp;<input type="submit" value="Remove"></p>
-      </form>
+      <ul class="list-inline">
+        <li><p>Do you want to edit or remove this track? &nbsp;</p></li>
+        <li><form method="POST" action="/tracks/<%= @track.id %>" class="border-bottom">
+          <!-- <input type="hidden" name="_method" method="DELETE"> -->
+          <input type="submit" value="Edit">
+        </form></li>
+        
+        <li><form method="POST" action="/tracks/<%= @track.id %>" class="border-bottom">
+          <!-- <input type="hidden" name="_method" method="DELETE"> -->
+          <input type="submit" value="Remove">
+        </form></li>
+      </ul>
     <% end %>
 
     <section class="comments">
@@ -89,7 +97,7 @@
               <div>
                 <!-- <label for='comment'>Comment</label> -->
                 <textarea name='comment' id='comment'></textarea>
-                <label for='rating'>Rating</label>
+                <label for='rating'>Leave a Rating</label>
                 <input type="number" name='rating' id="rating" class="hidden-field">
                 <div class="star-rating">
                   <ul class='list-inline'>

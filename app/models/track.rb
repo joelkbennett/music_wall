@@ -29,6 +29,6 @@ class Track < ActiveRecord::Base
   end
 
   def total_votes
-    votes.where(liked: true).count
+    votes.where(liked: true).count - votes.where(liked: true).count
   end
 end

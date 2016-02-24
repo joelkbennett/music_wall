@@ -1,7 +1,7 @@
 .cards {
   @include display(flex);
   @include flex-wrap(wrap);
-  @include justify-content(space-between);
+  // @include justify-content(space-between);
 }
 
 .card {
@@ -21,7 +21,7 @@
   $card-image-hover-color: #F8F2B4;
 
   @include flex-basis(15em);
-  @include flex-grow(1);
+  // @include flex-grow(1);
   @include transition (all 0.2s ease-in-out);
   background-color: $card-background;
   border-radius: $base-border-radius;
