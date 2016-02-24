@@ -18,7 +18,8 @@
 .vote {
   @include outer-container;
   padding: 1em 0;
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
   border-bottom: thin solid #ddd;
 
   .vote-up, .vote-down {
@@ -36,4 +37,16 @@
 
 .border-bottom {
   border-bottom: thin solid #ddd;
+}
+
+.meta {
+  margin: 2em 0;
+  text-align: center;
+  span {
+    text-align: center;
+    display: inline-block;
+    padding: .5em 1em;
+    background-color: yellow;
+    color: #333;
+  }
 }

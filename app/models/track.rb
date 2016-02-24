@@ -1,11 +1,12 @@
 class Track < ActiveRecord::Base
 
   belongs_to :user
-  has_many :votes
-  has_many :comments
+  has_many :votes #, dependent: destroy
+  has_many :comments #, dependent: destroy
 
   validates :song_title, presence: true
   validates :author, presence: true
+  validates :about, length: { minimum: 120 }
 
   def user
     user = User.find(user_id)
@@ -29,6 +30,10 @@ class Track < ActiveRecord::Base
   end
 
   def total_votes
-    votes.where(liked: true).count - votes.where(liked: true).count
+    votes.where(liked: true).count - votes.where(liked: false).count
+  end
+
+  def teaser 
+    about.to_s[0,120] + '...'
   end
 end

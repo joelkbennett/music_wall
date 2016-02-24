@@ -560,7 +560,8 @@ th {
   margin-left: auto;
   margin-right: auto;
   padding: 1em 0;
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
   border-bottom: thin solid #ddd; }
   .vote::after {
     clear: both;
@@ -581,6 +582,16 @@ th {
 
 .border-bottom {
   border-bottom: thin solid #ddd; }
+
+.meta {
+  margin: 2em 0;
+  text-align: center; }
+  .meta span {
+    text-align: center;
+    display: inline-block;
+    padding: .5em 1em;
+    background-color: yellow;
+    color: #333; }
 
 body {
   font-family: "PT Sans", sans-serif;

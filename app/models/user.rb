@@ -2,9 +2,9 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  has_many :tracks
-  has_many :votes
-  has_many :comments
+  has_many :tracks #, dependent: :destroy
+  has_many :votes #, dependent: :destroy
+  has_many :comments #, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true

@@ -19,7 +19,7 @@
         </div>
 
         <div class="card-copy">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
+          <p><%= track.teaser %></p>
           <p>
             <strong><%= track.count_up_votes %> up</strong>  <em>&</em> <strong><%= track.count_down_votes %> down</strong>
             | <%= track.comments.count %> review<% if track.comments.count != 1 %>s<% end %>

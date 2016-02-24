@@ -13,7 +13,8 @@ get '/tracks' do
   erb :'tracks/index'
 end
 
-get '/tracks/new' do 
+get '/tracks/new' do
+  @track = Track.new
   erb :'tracks/new'
 end
 
@@ -21,13 +22,14 @@ post '/tracks' do
   new_track = Track.new(
     song_title: params[:song_title],
     author: params[:author],
+    about: params[:about],
     url: params[:url],
     user_id: session[:uid]
   )
   if new_track.save 
     redirect '/tracks'
   else
-    erb :'tracks/new'
+    # redirect '/tracks/new'
   end
 end
 
@@ -46,6 +48,28 @@ post '/tracks/:id' do |id|
   track = Track.find(id)
   track.destroy
   redirect '/tracks'
+end
+
+get '/tracks/:id/edit' do |id|
+  @track = Track.find(id)
+  if session[:uid] == @track.user_id
+    erb :'tracks/edit'
+  else
+    redirect '/tracks/#{id}'
+  end
+end
+
+post '/tracks/:id/edit' do |id|
+  @track = Track.find(id)
+  if session[:uid] == @track.user_id
+    @track.update(song_title: params[:song_title], about: params[:about], author: params[:author, url: params[:url]])
+  end
+
+  if @track.save
+    redirect "/tracks/#{id}"
+  else
+    SSSHEHHEEEIYYTY
+  end
 end
 
 # User Routes
