@@ -1,7 +1,7 @@
-Sinatra
+Music Wall
 =============
 
-Brought to you by Lighthouse Labs
+A Sinatra based app for collecting and reviewing your favourite tracks 
 
 ## Getting Started
 
